@@ -1,0 +1,47 @@
+### Create Account
+
+POST http://localhost:8080/api/accounts
+Content-Type: application/json
+
+{
+  "name": "Vasya",
+  "pin": 3333
+}
+
+### Get all balances by accounts
+
+GET http://localhost:8080/api/accounts/balances
+
+### Replenish deposit
+
+POST http://localhost:8080/api/accounts/deposit
+Content-Type: application/json
+
+{
+  "id": 2,
+  "amount": 100.00,
+  "pin": 2589
+}
+
+### Withdraw money
+
+POST http://localhost:8080/api/accounts/withdraw
+Content-Type: application/json
+
+{
+  "id": 2,
+  "amount": 10000.00,
+  "pin": 2589
+}
+
+### Transfer money between accounts
+
+POST http://localhost:8080/api/accounts/transfer
+Content-Type: application/json
+
+{
+  "sourceAccountId": 11,
+  "targetAccountId": 1,
+  "amount": 10000.00,
+  "pin": 2442
+}
