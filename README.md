@@ -1,7 +1,6 @@
 # test-aston
-This pet project is a simple implementation of a RESTful API, back service and data model for creating bank accounts and transferring money between them. Interaction with the API is done using HTTP requests.
 
-## instructions
+## Instructions
 To generate jooq-beans, run the command:
 `mvn clean compile` or `mvn clean package`
 
