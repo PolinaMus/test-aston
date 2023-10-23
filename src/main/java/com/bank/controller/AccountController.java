@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.security.auth.login.AccountNotFoundException;
+import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,7 +30,7 @@ public class AccountController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createAccount(@RequestBody AccountDto accountDTO) {
+    public ResponseEntity<Void> createAccount(@Valid @RequestBody AccountDto accountDTO) {
         accountService.createAccount(accountDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -43,7 +44,7 @@ public class AccountController {
     }
 
     @PostMapping("/deposit")
-    public ResponseEntity<Void> deposit(@RequestBody AccountResponseDto accountResponseDto)
+    public ResponseEntity<Void> deposit(@Valid @RequestBody AccountResponseDto accountResponseDto)
             throws AccountNotFoundException {
         Account account = accountService.getAccountById(accountResponseDto.getId());
 
@@ -62,7 +63,7 @@ public class AccountController {
     }
 
     @PostMapping("/withdraw")
-    public ResponseEntity<Void> withdraw(@RequestBody AccountResponseDto accountResponseDto)
+    public ResponseEntity<Void> withdraw(@Valid @RequestBody AccountResponseDto accountResponseDto)
             throws AccountNotFoundException {
         Account account = accountService.getAccountById(accountResponseDto.getId());
 
@@ -81,7 +82,8 @@ public class AccountController {
     }
 
     @PostMapping("/transfer")
-    public ResponseEntity<Void> transfer(@RequestBody TransactionDto transactionDto) throws AccountNotFoundException {
+    public ResponseEntity<Void> transfer(@Valid @RequestBody TransactionDto transactionDto)
+            throws AccountNotFoundException {
         Account sourceAccount = accountService.getAccountById(transactionDto.getSourceAccountId());
         Account targetAccount = accountService.getAccountById(transactionDto.getTargetAccountId());
 
